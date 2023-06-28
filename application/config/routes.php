@@ -53,5 +53,6 @@ $route['default_controller'] = 'Dashboard';
 $route['login'] = 'Login';
 $route['logout'] = 'Login/logout';
 $route['adm_blog'] = 'Admin/blogPost';
+$route['adm_user'] = 'Admin/Crud_user';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

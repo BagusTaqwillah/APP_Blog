@@ -37,7 +37,6 @@
                                             </select>
                                         </div>
                                         <button type="submit" class="btn btn-success btn-block">Login</button>
-                                        <p class="text-center mt-3">Belum Punya Akun ? <a href="<?=base_url('daftar')?>">Daftar</a></p>
                                         <p class="text-center mt-3"><a href="<?=base_url('')?>">Kembali</a></p>
                                     </form>
                                 </div>

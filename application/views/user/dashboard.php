@@ -93,7 +93,7 @@
             <div class="card-body">
                 <h5 class="card-title"><?=$bl['title']?></h5>
                 <p class="card-text"><?=$bl['content']?>.</p>
-                <a href="#" class="btn btn-primary">Baca Selengkapnya</a>
+                <a href="Dashboard/detail/<?=$bl['id_post']?>" class="btn btn-primary">Baca Selengkapnya</a>
             </div>
             </div>
         </div>

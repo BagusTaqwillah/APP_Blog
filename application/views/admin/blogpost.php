@@ -48,8 +48,6 @@
                                                 <?=$lap['title'];?>
                                             </td>
                                             <td>
-                                                <a  onclick="return alert('fitur ini belum selesai')" href="#" class="btn btn-sm btn-secondary"><i class="fas fa-eye"></i></a>
-                                                <a onclick="return alert('fitur ini belum selesai')" href="#" class="btn btn-sm btn-secondary"><i class="fas fa-print"></i></a>
                                                 <a href="<?=base_url('Admin/updatePost')?>/<?=$lap['id_post']?>"  class="btn btn-sm btn-primary mt-1"><i class="fas fa-edit"></i></a>
                                                 <a  onclick="return confirm('yakin ingin hapus')"href="<?=base_url('Admin/hapusPost')?>/<?= $lap['id_post']?>"  class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
                                             </td>

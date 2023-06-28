@@ -136,6 +136,94 @@ class Admin extends  CI_Controller{
           }
           }
         }
+        public function Crud_user(){
+          $this->form_validation->set_rules('name', 'Nama', 'required',[
+              'required'=>"nama tidak boleh kosong"
+          ]);
+          
+          if ($this->form_validation->run() ==  FALSE) {
+              # code...
+              $data['judul']="Data User";
+              $data['user']=$this->db->get_where('account',['username'=>$this->session->userdata('username')])->row_array();
+              $data['data_user']=$this->db->get_where('account')->result_array();
+              $this->load->view('temp_admin/header',$data);
+              $this->load->view('temp_admin/sidebar',$data);
+              $this->load->view('temp_admin/topbar',$data);
+              $this->load->view('admin/data_user',$data);
+              $this->load->view('temp_admin/footer');
+          } else {
+             $nama=$this->input->post('name');
+             $username=$this->input->post('username');
+             $pass=$this->input->post('pass');
+             $role=$this->input->post('role');
+             $passHash=password_hash($pass,PASSWORD_DEFAULT);
+             $data=[
+              'name'=>$nama,
+              'username'=>$username,
+              'password'=>$passHash,
+              'role'=>$role,
+             ];
+             $this->db->insert('account',$data);
+             $this->session->set_flashdata("pesan",'<div class="alert alert-success alert-dismissible fade show" role="alert">
+                      <strong>User Di Tambahkan</strong>.
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>');
+                      redirect('adm_user','refresh');
+                      
+          }
+          
+       }
+       public function hapus_user($id){
+        $this->db->where('id_user',$id);
+       $this->db->delete('account');
+       $this->session->set_flashdata("pesan",'<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>User Di hapus</strong>.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>');
+                redirect('adm_user','refresh');
+    }
+    public function editUser($id){
+      $this->form_validation->set_rules('name', 'name', 'required');
+      
+      if ($this->form_validation->run()==false) {
+        $data['user']=$this->db->get_where('account',['username'=>$this->session->userdata('username')])->row_array();
+        // $user=$data['user'];
+        // $email=$user['email'];
+        $data['data_user']=$this->db->get_where('account',['id_user'=>$id])->row_array();
+         $data['judul']="Update Lapangan";
+         $this->load->view("temp_admin/header",$data);
+         $this->load->view("temp_admin/sidebar",$data);
+         $this->load->view("temp_admin/topbar",$data);
+         $this->load->view("admin/editUser",$data);
+         $this->load->view("temp_admin/footer");
+      }else{
+        $nama=$this->input->post('name');
+        $username=$this->input->post('username');
+        $password=$this->input->post('password');
+        $passHash=password_hash($password,PASSWORD_DEFAULT);
+        $role=$this->input->post('role');
+            $data=[
+                'name'=>$nama,
+                'username'=>$username,
+                'password'=>$passHash,
+                'role'=>$role
+            ];
+            $this->db->where('id_user',$id);
+            $this->db->update('account', $data);
+            $this->session->set_flashdata("pesan",'<div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>User Di update</strong>.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>');
+       redirect('adm_user');
+
+      }
+     }
 }
 
 

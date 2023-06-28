@@ -6,7 +6,11 @@
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
                     </div>
-
+                    <?php if ($user['role']=='pengguna') {?>
+                              
+                    <?php }else{?>
+                               
+                        
                     <!-- Content Row -->
                     <div class="row">
 
@@ -67,11 +71,11 @@
                                 </div>
                             </div>
                         </div>
-
-                       
-                    <!-- Content Row -->
-
-                    <div class="row">
+                        
+                        <!-- Content Row -->
+                        <?php }?>
+                        
+                        <div class="row">
 
                         <!-- Area Chart -->
                         <div class="col">
@@ -97,15 +101,17 @@
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body text-center">
-                                    <h3>Selamat Datang <?=$user['name']?> Di Halaman Admin Blog Lumut</h3>
+                                    <h3>Selamat Datang <?=$user['name']?> Di Halaman Blog Lumut</h3>
                                 </div>
                             </div>
                         </div>
 
                     </div>
                     </div>
+                    </div>
+                    </div>
 
                
 
-                </div>
+                
                 <!-- /.container-fluid -->
